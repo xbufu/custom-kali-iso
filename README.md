@@ -6,6 +6,7 @@
 - https://wiki.debian.org/DebianInstaller/Preseed
 - https://d-i.debian.org/doc/installation-guide/en.amd64/apbs03.html
 - https://www.debian.org/releases/stable/amd64/apb.en.html
+- https://debian-live-config.readthedocs.io/en/latest/custom.html
 
 ## Instructions
 
