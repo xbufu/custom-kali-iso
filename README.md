@@ -1,8 +1,11 @@
 # Custom Kali ISO
 
-## OffSec Guide
+## References
 
-https://www.offensive-security.com/kali-linux/kali-rolling-iso-of-doom/
+- https://www.offensive-security.com/kali-linux/kali-rolling-iso-of-doom/
+- https://wiki.debian.org/DebianInstaller/Preseed
+- https://d-i.debian.org/doc/installation-guide/en.amd64/apbs03.html
+- https://www.debian.org/releases/stable/amd64/apb.en.html
 
 ## Instructions
 
