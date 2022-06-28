@@ -10,47 +10,28 @@
 
 ## Instructions
 
-### Install Requirements
-
 ```bash
+# Install Requirements
 sudo apt -y install git live-build cdebootstrap
-```
 
-### Clone live-build-config Repository
-
-```bash
+# Clone live-build-config Repository
 git clone https://gitlab.com/kalilinux/build-scripts/live-build-config.git build/
 cd build/
-```
 
-### Apply Patch to Fix Setup
+# Apply Patch to Fix Setup
+patch -p1 -R < ../config.patch
 
-```bash
-patch -p1 < ../config.patch
-```
-
-### Create Boot Menu Entry
-
-```bash
+# Create Boot Menu Entry
 cp ../install.cfg kali-config/common/includes.binary/isolinux/install.cfg
 cp ../isolinux.cfg kali-config/common/includes.binary/isolinux/isolinux.cfg
-```
 
-### Clear package list for live image
-
-```bash
+# Clear package list for live image
 echo '' > kali-config/variant-default/package-lists/kali.list.chroot
-```
 
-### Add Preseed File (Make sure to change the IP if you're using the postseed file)
-
-```bash
+# Add Preseed File (Make sure to change the IP if you're using the postseed file)
 cp ../preseed.cfg kali-config/common/includes.installer/preseed.cfg
-```
 
-### Build the ISO
-
-```bash
+# Build the ISO
 ./build.sh -v
 ```
 

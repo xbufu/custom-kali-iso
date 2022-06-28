@@ -8,6 +8,9 @@ export SILENT=">/dev/null 2>&1"
 eval apt install -y open-vm-tools $SILENT
 eval systemctl enable --now open-vm-tools.service $SILENT
 
+# Install kernel headers
+eval apt install -y linux-headers-$(uname -r) $SILENT
+
 # Change shell to bash and remove zsh
 eval chsh -s /bin/bash root $SILENT
 eval apt remove -y zsh $SILENT
@@ -46,10 +49,19 @@ else
     sed 's/\[global\]/\[global\]\n   client min protocol = CORE\n   client max protocol = SMB3\n''/' -i /etc/samba/smb.conf
 fi
 
+# Enable SSH
+eval systemctl enable --now ssh $SILENT
+
 # Disable confirmation message when connecting to new hosts over SSH
 if [ -f /etc/ssh/ssh_config ]
 then
     echo "StrictHostKeyChecking=no" >> /etc/ssh/ssh_config
+fi
+
+# Allow root to login with password
+if [ -f /etc/ssh/sshd_config ]
+then
+    sed -i '/PermitRootLogin/c\PermitRootLogin yes' /etc/ssh/sshd_config
 fi
 
 # Install pip2
@@ -133,6 +145,12 @@ eval pip3 install pysmb $SILENT
 rm -f /tmp/impacket-0.10.0.tar.gz
 eval apt -y reinstall python3-impacket impacket-scripts $SILENT
 
+# Enable postgresql
+eval systemctl enable --now postgresql $SILENT
+
+# Initialize msfdb
+eval msdb init $SILENT
+
 # Configure git
 eval git config --global user.name "Bufu" $SILENT
 eval git config --global user.email "bufu@1337.com" $SILENT
@@ -171,6 +189,7 @@ echo -e '\nxfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorVirtual1/wo
 
 # Setup some tools
 eval mkdir -p /opt/{exploits,shells,post,enum}/{windows,linux,multi} $SILENT
+eval mkdir -p /opt/powershell $SILENT
 
 # Exploits
 eval git clone https://github.com/AlmCo/Shellshocker /opt/exploits/linux/shellshocker $SILENT
@@ -178,9 +197,22 @@ eval git clone https://github.com/3ndG4me/AutoBlue-MS17-010 /opt/exploits/window
 eval git clone https://github.com/helviojunior/MS17-010 /opt/exploits/windows/MS17-010 $SILENT
 eval git clone https://github.com/worawit/MS17-010 /opt/exploits/windows/MS17-010-OG $SILENT
 eval git clone https://github.com/andyacer/ms08_067 /opt/exploits/windows/ms08_067 $SILENT
+
+# PowerShell
 eval git clone https://github.com/samratashok/ADModule /opt/exploits/windows/ADModule $SILENT
 eval git clone https://github.com/samratashok/nishang /opt/exploits/windows/nishang $SILENT
 eval git clone https://github.com/PowerShellMafia/PowerSploit /opt/exploits/windows/PowerSploit $SILENT
+eval git clone https://github.com/danielbohannon/Invoke-Obfuscation.git /opt/powershell/Invoke-Obfuscation $SILENT
+eval git clone https://github.com/trustedsec/unicorn.git /opt/powershell/unicorn $SILENT
+eval git clone https://github.com/Kevin-Robertson/Inveigh.git /opt/powershell/Inveigh $SILENT
+eval git clone https://github.com/whitehat-zero/PowEnum.git /opt/powershell/PowEnum $SILENT
+eval git clone https://github.com/rvrsh3ll/Misc-Powershell-Scripts.git /opt/powershell/Misc-Powershell-Scripts $SILENT
+eval git clone https://github.com/dafthack/MailSniper.git /opt/powershell/MailSniper $SILENT
+eval git clone https://github.com/rasta-mouse/Sherlock.git /opt/powershell/Sherlock $SILENT
+eval git clone https://github.com/Kevin-Robertson/Invoke-TheHash.git /opt/powershell/Invoke-TheHash $SILENT
+eval git clone https://github.com/BloodHoundAD/BloodHound.git /opt/powershell/BloodHound $SILENT
+eval git clone https://github.com/xorrior/EmailRaider.git /opt/powershell/EmailRaider $SILENT
+eval git clone https://github.com/ChrisTruncer/WMImplant.git /opt/powershell/WMImplant $SILENT
 
 # Shells
 eval git clone https://github.com/WhiteWinterWolf/wwwolf-php-webshell /opt/shells/multi/wwwolf-php-webshell $SILENT
