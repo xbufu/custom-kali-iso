@@ -2,9 +2,9 @@
 
 This ISO will install a custom version of Kali with the selected packages and the default `root` user account. It will also load and apply the configurations defined in `postseed.sh`, which will be hosted remotely on a webserver.
 
-You can customize the install options like locale, keyboard layou, user accounts and installed packages in the `preseed.cfg` file.
+You can customize the install options like locale, keyboard layou, user accounts and installed packages in the `preseed.cfg` file. Any other configurations should be made through the `postseed.sh` file.
 
-Any other configurations should be made through the `postseed.sh` file.
+You can find more information about the configuration file format in the [references](#references) below.
 
 ## Build Instructions
 
