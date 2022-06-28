@@ -12,7 +12,7 @@
 
 ```bash
 # Install Requirements
-sudo apt -y install git live-build cdebootstrap
+sudo apt install -y git live-build cdebootstrap
 
 # Clone live-build-config Repository
 git clone https://gitlab.com/kalilinux/build-scripts/live-build-config.git build/
