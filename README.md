@@ -1,14 +1,12 @@
 # Custom Kali ISO
 
-## References
+This ISO will install a custom version of Kali with the selected packages and the default `root` user account. It will also load and apply the configurations defined in `postseed.sh`, which will be hosted remotely on a webserver.
 
-- https://www.offensive-security.com/kali-linux/kali-rolling-iso-of-doom/
-- https://wiki.debian.org/DebianInstaller/Preseed
-- https://d-i.debian.org/doc/installation-guide/en.amd64/apbs03.html
-- https://www.debian.org/releases/stable/amd64/apb.en.html
-- https://debian-live-config.readthedocs.io/en/latest/custom.html
+You can customize the install options like locale, keyboard layou, user accounts and installed packages in the `preseed.cfg` file.
 
-## Instructions
+Any other configurations should be made through the `postseed.sh` file.
+
+## Build Instructions
 
 ```bash
 # Install Requirements
@@ -40,3 +38,11 @@ cp ../preseed.cfg kali-config/common/includes.installer/preseed.cfg
 ```bash
 sudo python3 -m http.server 80
 ```
+
+## References
+
+- https://www.offensive-security.com/kali-linux/kali-rolling-iso-of-doom/
+- https://wiki.debian.org/DebianInstaller/Preseed
+- https://d-i.debian.org/doc/installation-guide/en.amd64/apbs03.html
+- https://www.debian.org/releases/stable/amd64/apb.en.html
+- https://debian-live-config.readthedocs.io/en/latest/custom.html
