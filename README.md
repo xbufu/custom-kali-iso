@@ -32,7 +32,7 @@ patch -p1 < ../config.patch
 ### Create Boot Menu Entry
 
 ```bash
-cp ../install.cfg kali-config/common/includes.binary/isolinux/install.cf
+cp ../install.cfg kali-config/common/includes.binary/isolinux/install.cfg
 cp ../isolinux.cfg kali-config/common/includes.binary/isolinux/isolinux.cfg
 ```
 
