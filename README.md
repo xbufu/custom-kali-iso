@@ -13,7 +13,7 @@
 ### Install Requirements
 
 ```bash
-sudo apt-get install git live-build cdebootstrap
+sudo apt -y install git live-build cdebootstrap
 ```
 
 ### Clone live-build-config Repository
@@ -36,7 +36,13 @@ cp ../install.cfg kali-config/common/includes.binary/isolinux/install.cf
 cp ../isolinux.cfg kali-config/common/includes.binary/isolinux/isolinux.cfg
 ```
 
-### Add Preseed File
+### Clear package list for live image
+
+```bash
+echo '' > kali-config/variant-default/package-lists/kali.list.chroot
+```
+
+### Add Preseed File (Make sure to change the IP if you're using the postseed file)
 
 ```bash
 cp ../preseed.cfg kali-config/common/includes.installer/preseed.cfg
@@ -45,5 +51,11 @@ cp ../preseed.cfg kali-config/common/includes.installer/preseed.cfg
 ### Build the ISO
 
 ```bash
-./build.sh --distribution kali-rolling --verbose
+./build.sh -v
+```
+
+### Host Postseed File on Webserver
+
+```bash
+sudo python3 -m http.server 80
 ```
