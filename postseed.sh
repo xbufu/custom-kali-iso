@@ -236,3 +236,4 @@ eval wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy32
 eval wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64 -O /opt/post/linux/pspy/pspy64 $SILENT
 eval wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64s -O /opt/post/linux/pspy/pspy64s $SILENT
 eval git clone https://github.com/turbo/zero2hero /opt/post/windows/zero2hero-uac-bypass $SILENT
+eval git clone https://github.com/mubix/post-exploitation /opt/post/multi/post-exploitation $SILENT
